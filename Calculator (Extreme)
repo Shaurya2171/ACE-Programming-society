@@ -1,0 +1,199 @@
+//the code is written in java lang.
+
+import java.util.*;
+
+
+public class calculator {
+
+    public static void main(String[] args) {
+
+        // Creates Scanner object to take input from the user
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Float> numbers = new ArrayList<>();
+
+
+        // INPUT NUMBERS
+
+        System.out.println("Enter numbers:");
+        System.out.println("Type 'done' when finished:");
+
+        // Infinite loop that keeps asking for numbers
+        while (true) {
+
+            // Takes input as String first
+            String input = sc.next();
+
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
+
+            numbers.add(Float.parseFloat(input));
+        }
+
+
+        // CHECK NUMBERS
+
+        // If the user didn't enter any number
+        if (numbers.size() == 0) {
+
+            System.out.println("No numbers entered.");
+            sc.close();
+            return;
+        }
+
+
+        //  SELECT TASK
+
+        System.out.println("Enter task:");
+        System.out.println("add | minus | multi | divide | reminder | check");
+
+        // Takes the task from the user
+        String task = sc.next();
+        float result = numbers.get(0);
+
+
+        // -- PERFORM OPERATION --
+
+        switch (task) {
+
+
+            //  ADDITION
+
+            case "add":
+                for (int i = 1; i < numbers.size(); i++) {
+
+                    result = result + numbers.get(i);
+                }
+
+                System.out.println("Result = " + result);
+
+                break;
+
+
+            //  SUBTRACTION
+
+            case "minus":
+                for (int i = 1; i < numbers.size(); i++) {
+
+                    result = result - numbers.get(i);
+                }
+
+                System.out.println("Result = " + result);
+
+                break;
+
+
+            //  MULTIPLICATION
+
+            case "multi":
+                for (int i = 1; i < numbers.size(); i++) {
+
+                    result = result * numbers.get(i);
+                }
+
+                System.out.println("Result = " + result);
+
+                break;
+
+
+            // DIVISION
+
+            case "divide":
+                for (int i = 1; i < numbers.size(); i++) {
+
+                    // We cannot divide by zero.
+                    if (numbers.get(i) == 0) {
+
+                        System.out.println("Cannot divide by zero.");
+
+                        // Close Scanner
+                        sc.close();
+                        return;
+                    }
+
+                    result = result / numbers.get(i);
+                }
+
+                System.out.println("Result = " + result);
+
+                break;
+
+
+            // REMAINDER
+
+            case "reminder":
+
+                if (numbers.size() < 2) {
+
+                    System.out.println(
+                            "Please enter at least 2 numbers to find remainder."
+                    );
+
+                    break;
+                }
+
+
+                // Calculate remainder
+
+                for (int i = 1; i < numbers.size(); i++) {
+
+                    // Cannot calculate remainder with zero
+                    if (numbers.get(i) == 0) {
+
+                        System.out.println(
+                                "Cannot find remainder with zero."
+                        );
+
+                        sc.close();
+
+                        return;
+                    }
+
+                    result = result % numbers.get(i);
+                }
+
+                System.out.println("Remainder = " + result);
+
+                break;
+
+
+            // EVEN / ODD
+
+            case "check":
+
+                // Check every number in the ArrayList
+                for (int i = 0; i < numbers.size(); i++) {
+
+                    // Get the current number
+                    float num = numbers.get(i);
+
+
+                    // % gives the remainder.
+                    // Logic:
+                    // i % 2 = 0 → Even
+                    // i % 2 = not zero → Odd
+
+                    if (num % 2 == 0) {
+
+                        System.out.println(num + " = Even");
+
+                    } else {
+
+                        System.out.println(num + " = Odd");
+                    }
+                }
+
+                break;
+
+
+            // INVALID TASK
+
+            default:
+
+                System.out.println("Invalid task.");
+        }
+
+        sc.close();
+    }
+}

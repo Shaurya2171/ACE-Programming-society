@@ -1,0 +1,28 @@
+//the problem is solved in java lang.
+
+      import java.util.Scanner;
+
+        public class Missingnumber {
+            public static void main(String[] args) {
+                Scanner sc = new Scanner(System.in);
+
+                System.out.println("Enter value of n:");
+                int n = sc.nextInt();
+
+                int givensum = 0;
+                int actulsum = (n*(n +1))/2;
+
+                System.out.println("Enter " + n + " numbers:");
+                for (int i = 1; i < n; i++) {
+                    int currentNum = sc.nextInt();
+                    givensum += currentNum;
+                }
+
+                int missingnumber = actulsum - givensum;
+
+
+
+                System.out.println("The is the missing number: " + missingnumber);
+                sc.close();
+            }
+        }
